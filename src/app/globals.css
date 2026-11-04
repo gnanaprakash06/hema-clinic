@@ -8,8 +8,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-heading: var(--font-serif);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -27,6 +27,7 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -39,6 +40,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-teal: var(--teal);
+  --color-teal-foreground: var(--teal-foreground);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -49,72 +52,60 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+  /* Warm Alabaster background & Deep Slate foreground */
+  --background: #FAF8F5;
+  --foreground: #1E293B;
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Pure White card & popover surfaces */
+  --card: #FFFFFF;
+  --card-foreground: #1E293B;
+  --popover: #FFFFFF;
+  --popover-foreground: #1E293B;
+
+  /* Primary Brand: Muted Terracotta Rose */
+  --primary: #D47A72;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary & Muted: Soft Blush */
+  --secondary: #F4E8E6;
+  --secondary-foreground: #1E293B;
+  --muted: #F4E8E6;
+  --muted-foreground: #475569;
+  --accent: #F4E8E6;
+  --accent-foreground: #1E293B;
+
+  /* Clinical Laparoscopic Surgical Accent: Deep Sage Teal */
+  --teal: #2A6B62;
+  --teal-foreground: #FFFFFF;
+
+  /* Destructive */
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+
+  /* Soft Rose-Beige Border & Focus Ring */
+  --border: #EEDCD9;
+  --input: #EEDCD9;
+  --ring: #D47A72;
+
+  /* Charts */
+  --chart-1: #D47A72;
+  --chart-2: #2A6B62;
+  --chart-3: #D9822B;
+  --chart-4: #8B5CF6;
+  --chart-5: #EC4899;
+
+  /* Roundedness: Soft 0.875rem */
+  --radius: 0.875rem;
+
+  /* Sidebar fallback variables */
+  --sidebar: #FAF8F5;
+  --sidebar-foreground: #1E293B;
+  --sidebar-primary: #D47A72;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F4E8E6;
+  --sidebar-accent-foreground: #1E293B;
+  --sidebar-border: #EEDCD9;
+  --sidebar-ring: #D47A72;
 }
 
 @layer base {
@@ -122,9 +113,9 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
   }
 }
