@@ -68,7 +68,7 @@ export function AppointmentForm() {
   };
 
   return (
-    <Card className="border-border border-t-4 border-t-primary bg-card shadow-lg">
+    <Card className="border-border border-t-4 border-t-primary bg-card shadow-lg rounded-3xl">
       <CardHeader className="gap-2 border-b border-border/60 pb-5">
         <div className="flex items-center gap-2.5">
           <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20">

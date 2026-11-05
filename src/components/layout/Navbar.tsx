@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 import { siteConfig } from "@/data/siteConfig";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -28,7 +29,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 w-full border-b border-border bg-background/90 backdrop-blur-md transition-colors">
       {/* Top micro-bar for clinical trust & emergency info */}
       <div className="hidden border-b border-border/60 bg-secondary/50 px-4 py-1.5 text-xs text-muted-foreground md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -63,7 +64,7 @@ export function Navbar() {
           href="/"
           className="group flex items-center gap-3 transition-opacity hover:opacity-90"
         >
-          <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20 shadow-xs transition-colors group-hover:bg-primary group-hover:text-white">
+          <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary border border-primary/20 shadow-xs transition-transform duration-300 group-hover:scale-105 group-hover:bg-primary group-hover:text-white">
             <Stethoscope className="size-5" />
           </div>
           <div className="flex flex-col">
@@ -71,13 +72,13 @@ export function Navbar() {
               {siteConfig.doctorName}
             </span>
             <span className="text-xs font-medium text-muted-foreground tracking-wide">
-              {siteConfig.clinicShortName} • Women&apos;s Care & Laparoscopy
+              {siteConfig.clinicShortName} • Women&apos;s Care &amp; Laparoscopy
             </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Main Navigation">
+        {/* Desktop Navigation Links with animated active underline/pill */}
+        <nav className="hidden items-center gap-1.5 lg:flex" aria-label="Main Navigation">
           {siteConfig.navLinks.map((link) => {
             const isActive =
               link.href === "/"
@@ -88,23 +89,34 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-md px-3.5 py-2 text-sm font-medium transition-colors ${
+                className={`relative rounded-lg px-3.5 py-2 text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-secondary text-primary font-semibold"
-                    : "text-foreground/80 hover:bg-secondary/60 hover:text-foreground"
+                    ? "text-primary font-semibold"
+                    : "text-foreground/80 hover:text-foreground"
                 }`}
               >
                 {link.title}
+                {isActive && (
+                  <motion.div
+                    layoutId="navbar-active-pill"
+                    className="absolute inset-0 rounded-lg bg-secondary/80 -z-10 border border-primary/15"
+                    transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                  />
+                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Desktop CTA Button */}
+        {/* Desktop CTA Button with hover lift & subtle shadow pulse */}
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/contact"
-            className={buttonVariants({ size: "default", className: "shadow-sm font-medium gap-2" })}
+            className={buttonVariants({
+              size: "default",
+              className:
+                "shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 font-semibold gap-2 bg-primary text-white hover:bg-primary/90",
+            })}
           >
             <CalendarCheck className="size-4" />
             <span>Book Consultation</span>
@@ -115,7 +127,11 @@ export function Navbar() {
         <div className="flex items-center gap-2 lg:hidden">
           <a
             href={`tel:${siteConfig.phoneRaw}`}
-            className={buttonVariants({ variant: "outline", size: "sm", className: "hidden sm:inline-flex gap-1.5" })}
+            className={buttonVariants({
+              variant: "outline",
+              size: "sm",
+              className: "hidden sm:inline-flex gap-1.5 border-border",
+            })}
           >
             <Phone className="size-3.5 text-primary" />
             <span>Call Clinic</span>
@@ -191,14 +207,19 @@ export function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className={buttonVariants({ className: "w-full justify-center gap-2 shadow-sm" })}
+                  className={buttonVariants({
+                    className: "w-full justify-center gap-2 shadow-sm font-semibold",
+                  })}
                 >
                   <CalendarCheck className="size-4" />
                   <span>Book Consultation</span>
                 </Link>
                 <a
                   href={`tel:${siteConfig.phoneRaw}`}
-                  className={buttonVariants({ variant: "outline", className: "w-full justify-center gap-2" })}
+                  className={buttonVariants({
+                    variant: "outline",
+                    className: "w-full justify-center gap-2",
+                  })}
                 >
                   <Phone className="size-4 text-primary" />
                   <span>Call {siteConfig.phoneDisplay}</span>
